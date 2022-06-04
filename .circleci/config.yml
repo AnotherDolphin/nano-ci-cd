@@ -25,3 +25,9 @@ jobs:
           name: Back-End Build
           command: |
             npm run backend:build
+      - run:
+          name: Backend Deploy
+          command: cd udagram-api && eb deploy
+      - run:
+          name: Frontend Deploy
+          command: cd udagram-frontend && aws s3 cp --recursive --acl public-read ./www s3://nano-cicd/
