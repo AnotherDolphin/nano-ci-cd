@@ -1,9 +1,9 @@
 version: 2.1
 orbs:
   node: circleci/node@5.0.2
-  aws-cli: circleci/aws-cli@3.1
+  # aws-cli: circleci/aws-cli@3.1
 jobs:
-  install__build:
+  build:
     docker:
       - image: "cimg/base:stable"
     steps:
@@ -30,11 +30,28 @@ jobs:
           paths:
             - project/udagram-api/www
             - project/udagram-frontend/www
-  # deploy_eb:
-  #   docker:
-  #       - image: "cimg/base:stable"
-  #   steps:
-  #     - checkout
+  test:
+    docker:
+        - image: "cimg/base:stable"
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Back-End Testing
+          command: |
+            npm run backend:test
+      - run:
+          name: Front-End Testing
+          command: |
+            npm run frontend:test
+  deploy_eb:
+    docker:
+        - image: "cimg/base:stable"
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
       - run:
           name: Install pip
           command: |
@@ -61,9 +78,11 @@ jobs:
 workflows:
   do:
     jobs:
-      - install__build
-      # - test
-      # - deploy_eb
+      - build
+      - test
+      - deploy_eb:
+          requires:
+            - build
       - deploy_s3:
           requires:
-            - install__build
+            - build
