@@ -48,6 +48,13 @@ jobs:
       - image: cibuilds/aws:1.16.1
     steps:
       - checkout
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/build
+
+      - attach_workspace:
+          at: ~/
       - run:
           name: Frontend Deploy
           command: cd udagram-frontend && aws s3 cp --recursive --acl public-read ./www s3://nano-cicd/
