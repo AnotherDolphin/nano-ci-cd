@@ -65,4 +65,4 @@ workflows:
       # - deploy_eb
       - deploy_s3:
           requires:
-            - install_build
+            - install__build
