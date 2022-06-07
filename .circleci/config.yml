@@ -46,6 +46,6 @@ jobs:
 workflows:
   do:
     jobs:
-      - install__build:
-      # - test:
-      - deploy:
+      - install__build
+      # - test
+      - deploy
