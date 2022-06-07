@@ -38,6 +38,9 @@ jobs:
     executor: aws-cli/default
     steps:
       - run:
+          name: check
+          command: echo "$PWD"
+      - run:
           name: Backend Deploy
           command: cd udagram-api && eb deploy
       - run:
