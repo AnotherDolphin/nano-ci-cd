@@ -56,5 +56,5 @@ workflows:
     jobs:
       - install__build
       # - test
-      - deploy_eb
+      # - deploy_eb
       - deploy_s3
