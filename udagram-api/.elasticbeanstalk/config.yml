@@ -14,7 +14,8 @@ global:
   instance_profile: null
   platform_name: null
   platform_version: null
-  sc: null
+  # profile: eb-cli2
+  sc: git
   workspace_type: Application
 deploy:
   artifact: www/www.zip
