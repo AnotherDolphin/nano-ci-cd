@@ -10,9 +10,6 @@ jobs:
       - node/install
       - checkout
       - run:
-          name: check
-          command: echo "$PWD"
-      - run:
           name: Install pip
           command: |
             sudo apt update
@@ -40,9 +37,6 @@ jobs:
   deploy:
     executor: aws-cli/default
     steps:
-      - run:
-          name: check
-          command: echo "$PWD"
       - run:
           name: Backend Deploy
           command: cd udagram-api && eb deploy
