@@ -43,3 +43,9 @@ jobs:
       - run:
           name: Frontend Deploy
           command: cd udagram-frontend && aws s3 cp --recursive --acl public-read ./www s3://nano-cicd/
+workflows:
+  do:
+    jobs:
+      - intall__build:
+      # - test:
+      - deploy:
