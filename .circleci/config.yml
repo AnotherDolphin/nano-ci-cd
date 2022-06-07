@@ -10,6 +10,9 @@ jobs:
       - node/install
       - checkout
       - run:
+          name: check
+          command: echo "$PWD"
+      - run:
           name: Install pip
           command: |
             sudo apt update
@@ -39,7 +42,7 @@ jobs:
     steps:
       - run:
           name: check
-          command: ls
+          command: echo "$PWD"
       - run:
           name: Backend Deploy
           command: cd udagram-api && eb deploy
