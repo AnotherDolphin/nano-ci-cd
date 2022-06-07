@@ -25,11 +25,11 @@ jobs:
           name: Back-End Build
           command: |
             npm run backend:build
-  deploy_eb:
-    docker:
-        - image: "cimg/base:stable"
-    steps:
-      - checkout
+  # deploy_eb:
+  #   docker:
+  #       - image: "cimg/base:stable"
+  #   steps:
+  #     - checkout
       - run:
           name: Install pip
           command: |
@@ -43,7 +43,9 @@ jobs:
           name: Backend Deploy
           command: cd udagram-api && cd www && zip -r www.zip . && cd .. && eb deploy Uda-env       
   deploy_s3:
-    executor: aws-cli/default
+    # executor: aws-cli/default
+    docker:
+      - image: cibuilds/aws:1.16.1
     steps:
       - checkout
       - run:
