@@ -64,5 +64,5 @@ workflows:
       # - test
       # - deploy_eb
       - deploy_s3
-        requires:
-          - install_build
+          requires:
+            - install_build
