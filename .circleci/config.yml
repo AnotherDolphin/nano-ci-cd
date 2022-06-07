@@ -41,7 +41,7 @@ jobs:
             sudo pip install awsebcli
       - run:
           name: Backend Deploy
-          command: cd udagram-api && eb deploy            
+          command: cd udagram-api && eb deploy Uda-env       
   deploy_s3:
     executor: aws-cli/default
     steps:
