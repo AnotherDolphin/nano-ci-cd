@@ -25,6 +25,10 @@ jobs:
           name: Back-End Build
           command: |
             npm run backend:build
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/www
   # deploy_eb:
   #   docker:
   #       - image: "cimg/base:stable"
@@ -48,11 +52,6 @@ jobs:
       - image: cibuilds/aws:1.16.1
     steps:
       - checkout
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - project/build
-
       - attach_workspace:
           at: ~/
       - run:
@@ -65,3 +64,5 @@ workflows:
       # - test
       # - deploy_eb
       - deploy_s3
+        requires:
+          - install_build
