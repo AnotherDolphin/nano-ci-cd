@@ -8,7 +8,7 @@
     "start": "ng serve",
     "build": "ng build",
     "deploy": "ng build && aws s3 cp --recursive --acl public-read ./www s3://nano-cicd/",
-    "test": "ng test",
+    "test": "echo \"No tests to Pass ✔\" && exit 1",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
