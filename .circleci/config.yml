@@ -1,8 +1,8 @@
 version: 2.1
 orbs:
   node: circleci/node@5.0.2
-  # aws-cli: circleci/aws-cli@3.1
 jobs:
+  # build front and backend directories
   build:
     docker:
       - image: "cimg/base:stable"
@@ -30,6 +30,7 @@ jobs:
           paths:
             - project/udagram-api/www
             - project/udagram-frontend/www
+  # test build directories
   test:
     docker:
         - image: "cimg/base:stable"
@@ -46,6 +47,7 @@ jobs:
           name: Front-End Testing
           command: |
             npm run frontend:test
+  # deploy api to ebs
   deploy_eb:
     docker:
         - image: "cimg/base:stable"
@@ -65,8 +67,8 @@ jobs:
       - run:
           name: Backend Deploy
           command: cd udagram-api && cd www && zip -r www.zip . && cd .. && eb deploy Uda-env       
+  # deploy frontend to S3
   deploy_s3:
-    # executor: aws-cli/default
     docker:
       - image: cibuilds/aws:1.16.1
     steps:
@@ -80,7 +82,9 @@ workflows:
   do:
     jobs:
       - build
-      - test
+      - test:
+          requires:
+            - build
       - deploy_eb:
           requires:
             - build
