@@ -7,5 +7,5 @@ CircleCI runs workflow and uploads the new front and back end builds to the resp
     >Run all configured test scripts
 3. **deploy_eb**
     >Deploy backend build directory from shared workspace to EBS intance
-4. **deploy_**
+4. **deploy_s3**
     >Deploy frontend build directory from shared workspace to S3 bucket
