@@ -69,7 +69,6 @@ jobs:
           command: cd udagram-api && cd www && zip -r www.zip . && cd .. && eb deploy Uda-env
       - run:
           name: set env variables
-          # shell: /bin/bash
           command: chmod +x udagram-api/setenv.sh
   # deploy frontend to S3
   deploy_s3:
