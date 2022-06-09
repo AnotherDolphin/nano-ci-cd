@@ -70,7 +70,7 @@ jobs:
       - run:
           name: set env variables
           # shell: /bin/bash
-          command: bash udagram-api/setenv.sh
+          command: chmod +x udagram-api/setenv.sh
   # deploy frontend to S3
   deploy_s3:
     docker:
