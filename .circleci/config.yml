@@ -83,12 +83,12 @@ jobs:
           command: cd udagram-frontend && aws s3 cp --recursive --acl public-read ./www s3://nano-cicd/
 workflows:
   do:
-    filters:
-      branches:
-        only:
-          - main
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only:
+                - main
       - test:
           requires:
             - build
