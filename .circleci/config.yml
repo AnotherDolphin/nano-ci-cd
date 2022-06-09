@@ -92,9 +92,9 @@ workflows:
       - test:
           requires:
             - build
-      # - deploy_eb:
-      #     requires:
-      #       - build
+      - deploy_eb:
+          requires:
+            - build
       - deploy_s3:
           requires:
             - build
